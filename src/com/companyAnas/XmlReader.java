@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class XmlReader {
 
 
-    public static ArrayList<User> readUsersFromXml(String filepath) {
-        ArrayList<User> users = new ArrayList<>();
+    public static ArrayList<Country> readUsersFromXml(String filepath) {
+        ArrayList<Country> users = new ArrayList<>();
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -32,7 +32,7 @@ public class XmlReader {
                 if (childNode.getNodeType() == Node.ELEMENT_NODE) {
                     NodeList childsOfUserTag = childNode.getChildNodes();
 
-                    String country = "";
+                    String name = "";
                     int population = 0;
                     String capital = "";
                     Continent continent = Continent.AFRICA;
@@ -40,14 +40,14 @@ public class XmlReader {
                         Node childNodeOfUserTag = childsOfUserTag.item(j);
                         if (childNodeOfUserTag.getNodeType() == Node.ELEMENT_NODE) {
                             switch (childNodeOfUserTag.getNodeName()) {
-                                case "country" -> country = childNodeOfUserTag.getTextContent();
+                                case "country" -> name = childNodeOfUserTag.getTextContent();
                                 case "population" -> population = Integer.parseInt(childNodeOfUserTag.getTextContent());
                                 case "capital" -> capital = childNodeOfUserTag.getTextContent();
                                 case "continent" -> continent = Continent.valueOf(childNodeOfUserTag.getTextContent());
                             }
                         }
                     }
-                    users.add(new User(country, population, capital, continent));
+                    users.add(new Country(name, population, capital, continent));
                 }
             }
         } catch (Exception e) {

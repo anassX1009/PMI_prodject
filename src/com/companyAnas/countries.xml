@@ -14,7 +14,7 @@
     </user>
     <user>
         <country>Hungary</country>
-        <population>10000000</population>
+        <population>9750000</population>
         <capital>Budapest</capital>
         <continent>EUROPE</continent>
     </user>
@@ -43,9 +43,9 @@
         <continent>AMERICAS</continent>
     </user>
     <user>
-        <country>Japan</country>
-        <population>126000000</population>
-        <capital>Tokyo</capital>
-        <continent>ASIA</continent>
+        <country>Angola</country>
+        <population>33000000</population>
+        <capital>Luanda</capital>
+        <continent>AFRICA</continent>
     </user>
 </users>

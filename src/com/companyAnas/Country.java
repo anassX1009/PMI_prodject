@@ -1,26 +1,26 @@
 package com.companyAnas;
 
-public class User {
+public class Country {
 
 
-    private String country;
+    private String name;
     private int population;
     private String capital;
     private final Continent continent;
 
-    public User() {
+    public Country() {
         this("Morocco", 37000000, "Rabat", Continent.AFRICA);
     }
 
-    public User(String country, int population, String capital) {
-        this.country = country;
+    public Country(String country, int population, String capital) {
+        this.name = country;
         this.population = population;
         this.capital = capital;
         continent = Continent.AFRICA;
     }
 
-    public User(String country, int population, String capital, Continent continent) {
-        this.country = country;
+    public Country(String country, int population, String capital, Continent continent) {
+        this.name = country;
         this.population = population;
         this.capital = capital;
         this.continent = continent;
@@ -32,11 +32,11 @@ public class User {
 
 
     public String getCountry() {
-        return country;
+        return name;
     }
 
     public void setCountry(String country) {
-        this.country = country;
+        this.name = country;
     }
 
     public int getPopulation() {
@@ -57,7 +57,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "\n"+country + " --> Population: " + population + "| Capital: " + capital + "| Continent: "
+        return "\n"+name + " --> Population: " + population + "| Capital: " + capital + "| Continent: "
                 + continent.toString() ;
     }
 }

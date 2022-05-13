@@ -21,10 +21,10 @@ public class XmlWriter {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String filepath = "src/com/companyAnas/users.xml";
-        ArrayList<User> users = XmlReader.readUsersFromXml(filepath);
+        String filepath = "src/com/companyAnas/countries.xml";
+        ArrayList<Country> countries = XmlReader.readUsersFromXml(filepath);
 
-        //You could find more info in the app documentation in target --> documentation.md
+        //You could find more info in the app documentation in target --> README.md
         System.out.println("--> This is an EDUCATIONAL application. It's basically a database of countries.");
         System.out.println("--> This app is to help people learn more about world's countries. ");
         System.out.println("--> You could add new countries to the list, modify countries information, and delete countries from the list: ");
@@ -45,14 +45,14 @@ public class XmlWriter {
                 scanner.nextLine();
             }
             switch (choice) {
-                case 1 -> System.out.println(users);
-                case 2 -> addCountry(users);
-                case 3 -> modifyCountry(users);
-                case 4 -> deleteCountry(users);
+                case 1 -> System.out.println(countries);
+                case 2 -> addCountry(countries);
+                case 3 -> modifyCountry(countries);
+                case 4 -> deleteCountry(countries);
             }
         }
 
-        saveUsersToXml(users, filepath);
+        saveUsersToXml(countries, filepath);
     }
 
     private static void addCountry(ArrayList<User> users) {
@@ -83,7 +83,7 @@ public class XmlWriter {
         User user = new User();
         String country = "";
         while (country.isEmpty()) {
-            System.out.print("Enter the name of the country that you want to modify its information: ");
+            System.out.print("Enter the name of the country: ");
             country = scanner.nextLine();
             for (User userElement : users) {
                 if (userElement.getCountry().equals(country)) {
