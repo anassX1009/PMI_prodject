@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class XmlReader {
 
 
-    public static ArrayList<Country> readUsersFromXml(String filepath) {
+    public static ArrayList<Country> readCountriesFromXml(String filepath) {
         ArrayList<Country> users = new ArrayList<>();
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -40,7 +40,7 @@ public class XmlReader {
                         Node childNodeOfUserTag = childsOfUserTag.item(j);
                         if (childNodeOfUserTag.getNodeType() == Node.ELEMENT_NODE) {
                             switch (childNodeOfUserTag.getNodeName()) {
-                                case "country" -> name = childNodeOfUserTag.getTextContent();
+                                case "name" -> name = childNodeOfUserTag.getTextContent();
                                 case "population" -> population = Integer.parseInt(childNodeOfUserTag.getTextContent());
                                 case "capital" -> capital = childNodeOfUserTag.getTextContent();
                                 case "continent" -> continent = Continent.valueOf(childNodeOfUserTag.getTextContent());

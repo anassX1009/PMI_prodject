@@ -22,7 +22,7 @@ public class XmlWriter {
 
     public static void main(String[] args) {
         String filepath = "src/com/companyAnas/countries.xml";
-        ArrayList<Country> countries = XmlReader.readUsersFromXml(filepath);
+        ArrayList<Country> countries = XmlReader.readCountriesFromXml(filepath);
 
         //You could find more info in the app documentation in target --> README.md
         System.out.println("--> This is an EDUCATIONAL application. It's basically a database of countries.");
@@ -55,44 +55,44 @@ public class XmlWriter {
         saveUsersToXml(countries, filepath);
     }
 
-    private static void addCountry(ArrayList<User> users) {
+    private static void addCountry(ArrayList<Country> countries) {
         System.out.print("Enter name of the country you want to add: ");
         String country = scanner.nextLine();
         int population = readPopulation();
         System.out.print("Enter the capital of this country: ");
         String capital = scanner.nextLine();
         Continent continent = readContinent();
-        users.add(new User(country, population, capital, continent));
+        countries.add(new Country(country, population, capital, continent));
     }
 
-    private static void modifyCountry(ArrayList<User> users) {
-        User user = findUserIn(users);
+    private static void modifyCountry(ArrayList<Country> countries) {
+        Country country = findUserIn(countries);
         int population = readPopulation();
         System.out.print("Enter the capital of the country: ");
         String capital = scanner.nextLine();
         Continent continent = readContinent();
-        users.set(users.indexOf(user),
-                  new User(user.getCountry(), population, capital, continent));
+        countries.set(countries.indexOf(country),
+                  new Country(country.getName(), population, capital, continent));
     }
 
-    private static void deleteCountry(ArrayList<User> users) {
-        users.remove(findUserIn(users));
+    private static void deleteCountry(ArrayList<Country> countries) {
+        countries.remove(findUserIn(countries));
     }
 
-    private static User findUserIn(ArrayList<User> users) {
-        User user = new User();
-        String country = "";
-        while (country.isEmpty()) {
+    private static Country findUserIn(ArrayList<Country> countries) {
+        Country country = new Country();
+        String name = "";
+        while (name.isEmpty()) {
             System.out.print("Enter the name of the country: ");
-            country = scanner.nextLine();
-            for (User userElement : users) {
-                if (userElement.getCountry().equals(country)) {
-                    return userElement;
+            name = scanner.nextLine();
+            for (Country countryElement : countries) {
+                if (countryElement.getName().equals(name)) {
+                    return countryElement;
                 }
             }
-            country = "";
+            name = "";
         }
-        return user;
+        return country;
     }
 
     private static int readPopulation() {
@@ -126,20 +126,20 @@ public class XmlWriter {
         return continent;
     }
 
-    public static void saveUsersToXml(ArrayList<User> users, String filepath) {
+    public static void saveUsersToXml(ArrayList<Country> countries, String filepath) {
         try {
             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 
-            Element rootElement = document.createElement("users");
+            Element rootElement = document.createElement("countries");
             document.appendChild(rootElement);
 
-            for (User user : users) {
-                Element userElement = document.createElement("user");
+            for (Country country : countries) {
+                Element userElement = document.createElement("country");
                 rootElement.appendChild(userElement);
-                createChildElement(document, userElement, "country", user.getCountry());
-                createChildElement(document, userElement, "population", String.valueOf(user.getPopulation()));
-                createChildElement(document, userElement, "capital", user.getCapital());
-                createChildElement(document, userElement, "continent", user.getContinent().toString());
+                createChildElement(document, userElement, "name", country.getName());
+                createChildElement(document, userElement, "population", String.valueOf(country.getPopulation()));
+                createChildElement(document, userElement, "capital", country.getCapital());
+                createChildElement(document, userElement, "continent", country.getContinent().toString());
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

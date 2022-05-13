@@ -31,12 +31,12 @@ public class Country {
     }
 
 
-    public String getCountry() {
+    public String getName() {
         return name;
     }
 
-    public void setCountry(String country) {
-        this.name = country;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getPopulation() {

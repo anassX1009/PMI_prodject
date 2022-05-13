@@ -11,7 +11,7 @@
 
 
 * the Main class that runs the app and give the user options to choose from exists in XmlWriter.java
-* The class User.java has the have attributes: country, population, capital. it also has a setter and a getter to each attribute and a Constructor
+* The class Country.java has the have attributes: country, population, capital. it also has a setter and a getter to each attribute and a Constructor
 * Continent.java is an enum file that contains the available continents 
-* users.xml is a xml file that has all the countries with their info and the info that updates everytime the user makes changes or add countries to the list
-* users1.xml is the original xml file that doesn't change by user input
+* countries.xml is a xml file that has all the countries with their info and the info that updates everytime the user makes changes or add countries to the list
+* countries1.xml is the original xml file that doesn't change by user input
