@@ -52,7 +52,7 @@ public class XmlWriter {
             }
         }
 
-        saveUsersToXml(countries, filepath);
+        saveCountriessToXml(countries, filepath);
     }
 
     private static void addCountry(ArrayList<Country> countries) {
@@ -66,7 +66,7 @@ public class XmlWriter {
     }
 
     private static void modifyCountry(ArrayList<Country> countries) {
-        Country country = findUserIn(countries);
+        Country country = findCountryIn(countries);
         int population = readPopulation();
         System.out.print("Enter the capital of the country: ");
         String capital = scanner.nextLine();
@@ -76,10 +76,10 @@ public class XmlWriter {
     }
 
     private static void deleteCountry(ArrayList<Country> countries) {
-        countries.remove(findUserIn(countries));
+        countries.remove(findCountryIn(countries));
     }
 
-    private static Country findUserIn(ArrayList<Country> countries) {
+    private static Country findCountryIn(ArrayList<Country> countries) {
         Country country = new Country();
         String name = "";
         while (name.isEmpty()) {
@@ -126,7 +126,7 @@ public class XmlWriter {
         return continent;
     }
 
-    public static void saveUsersToXml(ArrayList<Country> countries, String filepath) {
+    public static void saveCountriessToXml(ArrayList<Country> countries, String filepath) {
         try {
             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
 
@@ -134,12 +134,12 @@ public class XmlWriter {
             document.appendChild(rootElement);
 
             for (Country country : countries) {
-                Element userElement = document.createElement("country");
-                rootElement.appendChild(userElement);
-                createChildElement(document, userElement, "name", country.getName());
-                createChildElement(document, userElement, "population", String.valueOf(country.getPopulation()));
-                createChildElement(document, userElement, "capital", country.getCapital());
-                createChildElement(document, userElement, "continent", country.getContinent().toString());
+                Element countryElement = document.createElement("country");
+                rootElement.appendChild(countryElement);
+                createChildElement(document, countryElement, "name", country.getName());
+                createChildElement(document, countryElement, "population", String.valueOf(country.getPopulation()));
+                createChildElement(document, countryElement, "capital", country.getCapital());
+                createChildElement(document, countryElement, "continent", country.getContinent().toString());
             }
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();

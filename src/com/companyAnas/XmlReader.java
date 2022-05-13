@@ -16,7 +16,7 @@ public class XmlReader {
 
 
     public static ArrayList<Country> readCountriesFromXml(String filepath) {
-        ArrayList<Country> users = new ArrayList<>();
+        ArrayList<Country> countries = new ArrayList<>();
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -30,30 +30,30 @@ public class XmlReader {
             for (int i = 0; i < childsOfRootElement.getLength(); i++) {
                 Node childNode = childsOfRootElement.item(i);
                 if (childNode.getNodeType() == Node.ELEMENT_NODE) {
-                    NodeList childsOfUserTag = childNode.getChildNodes();
+                    NodeList childsOfCountryTag = childNode.getChildNodes();
 
                     String name = "";
                     int population = 0;
                     String capital = "";
                     Continent continent = Continent.AFRICA;
-                    for (int j = 0; j < childsOfUserTag.getLength(); j++) {
-                        Node childNodeOfUserTag = childsOfUserTag.item(j);
-                        if (childNodeOfUserTag.getNodeType() == Node.ELEMENT_NODE) {
-                            switch (childNodeOfUserTag.getNodeName()) {
-                                case "name" -> name = childNodeOfUserTag.getTextContent();
-                                case "population" -> population = Integer.parseInt(childNodeOfUserTag.getTextContent());
-                                case "capital" -> capital = childNodeOfUserTag.getTextContent();
-                                case "continent" -> continent = Continent.valueOf(childNodeOfUserTag.getTextContent());
+                    for (int j = 0; j < childsOfCountryTag.getLength(); j++) {
+                        Node childNodeOfCountryTag = childsOfCountryTag.item(j);
+                        if (childNodeOfCountryTag.getNodeType() == Node.ELEMENT_NODE) {
+                            switch (childNodeOfCountryTag.getNodeName()) {
+                                case "name" -> name = childNodeOfCountryTag.getTextContent();
+                                case "population" -> population = Integer.parseInt(childNodeOfCountryTag.getTextContent());
+                                case "capital" -> capital = childNodeOfCountryTag.getTextContent();
+                                case "continent" -> continent = Continent.valueOf(childNodeOfCountryTag.getTextContent());
                             }
                         }
                     }
-                    users.add(new Country(name, population, capital, continent));
+                    countries.add(new Country(name, population, capital, continent));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return users;
+        return countries;
     }
 
 
